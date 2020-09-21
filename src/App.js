@@ -10,6 +10,7 @@ import Rentalas from './components/rentals';
 import NotFound from './components/notFound';
 import MovieForm from './components/movieForm';
 import Login from './components/login';
+import RegisterForm from './components/registerForm';
 
 class App extends Component {
   render() {
@@ -25,8 +26,10 @@ class App extends Component {
                 <Route path='/movies/:id' component={MovieForm} />
                 <Route path={this.home || '/movies'} exact component={Movies} />
                 <Route path="/customers" component={Cusotmers} />
+                <Route path='/new' component={MovieForm} />
                 <Route path="/rentals" component={Rentalas} />
                 <Route path="/login" component={Login} />
+                <Route path='/register' component={RegisterForm} />
                 <Route path="/notfound" component={NotFound} />
                 <Redirect to='/notfouud' />
 

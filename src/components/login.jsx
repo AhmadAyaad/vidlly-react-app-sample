@@ -1,45 +1,39 @@
-import React, { Component } from 'react';
+import React from "react";
+import Joi from "joi-browser";
+import Form from "./form";
 
-class Login extends Component {
+class LoginForm extends Form {
+  state = {
+    data: { username: "", password: "" },
+    errors: {}
+  };
 
-    handleSubmit = (e) => {
-        console.log(e);
-        e.preventDefault();
-    }
-    
-    render() {
-        return (
+  schema = {
+    username: Joi.string()
+      .required()
+      .label("Username"),
+    password: Joi.string()
+      .required()
+      .label("Password")
+  };
 
-            <div className='row'>
-                <div className="col-12">
-                    <form onSubmit={this.handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="userName">UserName</label>
-                            <input type="text"
-                                className="form-control"
-                                id="userName" placeholder="Enter user name"></input>
-                        </div>
+  doSubmit = () => {
+    // Call the server
+    console.log("Submitted");
+  };
 
-                        <div className="form-group">
-                            <label htmlFor="password">Password</label>
-                            <input type="password"
-                                className="form-control"
-                                id="password" placeholder="Enter user password"></input>
-                        </div>
-
-
-
-                        <button type="submit" className="btn btn-primary">Login</button>
-
-
-                    </form>
-                </div>
-            </div>
-
-        );
-    }
+  render() {
+    return (
+      <div>
+        <h1>Login</h1>
+        <form onSubmit={this.handleSubmit}>
+          {this.renderInput("username", "Username")}
+          {this.renderInput("password", "Password", "password")}
+          {this.renderButton("Login")}
+        </form>
+      </div>
+    );
+  }
 }
 
-export default Login;
-
-
+export default LoginForm;
